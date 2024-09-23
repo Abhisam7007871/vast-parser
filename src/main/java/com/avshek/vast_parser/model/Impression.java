@@ -1,17 +1,26 @@
 package com.avshek.vast_parser.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
+import jakarta.persistence.*;
 
-@Embeddable
+@Entity
+@Table(name = "impressions")
 public class Impression {
-    @Column(name = "impression_vast_id") // Rename to avoid conflict
-    private String vastId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id; // Primary key
 
+    private String vastId;
     private String url;
 
-    // Getters and Setters...
+    // Getters and Setters
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getVastId() {
         return vastId;

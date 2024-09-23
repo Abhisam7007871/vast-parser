@@ -18,7 +18,8 @@ public class VastTag {
     private String description;
     private String version;
 
-    @Embedded
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "impression_id") // Foreign key column in vast_tags table
     private Impression impression;
 
     @OneToMany(mappedBy = "vastTag", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
