@@ -11,6 +11,7 @@ public class VastTag {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     @Column(name = "vast_id", unique = true) // Ensure it's unique
     private String vastId;
 
