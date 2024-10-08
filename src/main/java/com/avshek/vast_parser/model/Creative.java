@@ -12,7 +12,7 @@ public class Creative {
 
     @ManyToOne
     @JoinColumn(name = "vast_tag_id")
-    private VastTag vastTag;
+    private VastData vastTag;
 
     private int duration;
 
@@ -30,11 +30,11 @@ public class Creative {
         this.id = id;
     }
 
-    public VastTag getVastTag() {
+    public VastData getVastTag() {
         return vastTag;
     }
 
-    public void setVastTag(VastTag vastTag) {
+    public void setVastTag(VastData vastTag) {
         this.vastTag = vastTag;
     }
 

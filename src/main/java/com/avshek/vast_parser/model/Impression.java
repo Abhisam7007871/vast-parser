@@ -12,6 +12,13 @@ public class Impression {
     private String vastId;
     private String url;
 
+
+
+    // Constructor
+    public Impression(String url) {
+        this.url = url;
+    }
+
     // Getters and Setters
 
     public Long getId() {
