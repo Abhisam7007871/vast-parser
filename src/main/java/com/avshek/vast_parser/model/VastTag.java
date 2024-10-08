@@ -6,7 +6,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "vast_tags")
-public class VastTag {
+public class Vastg {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
