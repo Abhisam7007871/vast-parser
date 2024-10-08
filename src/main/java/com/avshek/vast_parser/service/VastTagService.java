@@ -3,7 +3,7 @@
 
 package com.avshek.vast_parser.service;
 
-import com.avshek.vast_parser.model.VastTag;
+import com.avshek.vast_parser.model.VastData;
 import com.avshek.vast_parser.repository.VastTagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,30 +64,30 @@ public class VastTagService {
         return result.getWriter().toString();
     }
 
-    public VastTag parseVastXml(String xmlContent) {
+    public VastData parseVastXml(String xmlContent) {
         // Implement your parsing logic here
-        return new VastTag(); // Placeholder
+        return new VastData(); // Placeholder
     }
 
-    public VastTag saveVastTag(VastTag vastTag) {
-        return vastTagRepository.save(vastTag);
+    public VastData saveVastTag(VastData vastData) {
+        return vastTagRepository.save(vastData);
     }
 
-    public VastTag getVastTagById(Long id) {
+    public VastData getVastTagById(Long id) {
         return findById(id);
     }
 
-    public String convertToJson(VastTag vastTag) {
+    public String convertToJson(VastData vastData) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            return objectMapper.writeValueAsString(vastTag);
+            return objectMapper.writeValueAsString(vastData);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public VastTag findById(Long id) {
+    public VastData findById(Long id) {
         return vastTagRepository.findById(id).orElse(null); // This should work if the repository is set up correctly
     }
 }
@@ -121,7 +121,7 @@ public class VastTagService {
 
 //package com.avshek.vast_parser.service;
 //
-//import com.avshek.vast_parser.model.VastTag;
+//import com.avshek.vast_parser.model.VastData;
 //import com.avshek.vast_parser.repository.VastTagRepository;
 //import com.fasterxml.jackson.databind.ObjectMapper;
 //import org.springframework.beans.factory.annotation.Autowired;
@@ -185,7 +185,7 @@ public class VastTagService {
 //        return result.getWriter().toString();
 //    }
 //
-//    public VastTag parseVastXml(String xmlContent) {
+//    public VastData parseVastXml(String xmlContent) {
 //        try {
 //            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 //            DocumentBuilder builder = factory.newDocumentBuilder();
@@ -194,8 +194,8 @@ public class VastTagService {
 //            // Normalize the XML structure
 //            doc.getDocumentElement().normalize();
 //
-//            // Create the VastTag object
-//            VastTag vastTag = new VastTag();
+//            // Create the VastData object
+//            VastData vastTag = new VastData();
 //
 //            // Parse the version
 //            Element vastElement = (Element) doc.getElementsByTagName("VAST").item(0);
@@ -235,25 +235,25 @@ public class VastTagService {
 //
 //            // Parse impression
 //            Element impressionElement = (Element) vastElement.getElementsByTagName("Impression").item(0);
-//            VastTag.Impression impression = new VastTag.Impression();
+//            VastData.Impression impression = new VastData.Impression();
 //            impression.setId(impressionElement.getAttribute("id"));
 //            impression.setUrl(impressionElement.getTextContent());
 //            vastTag.setImpression(impression);
 //
 //            // Parse creatives
 //            NodeList creatives = vastElement.getElementsByTagName("Creative");
-//            List<VastTag.Creative> creativeList = new ArrayList<>();
+//            List<VastData.Creative> creativeList = new ArrayList<>();
 //            for (int i = 0; i < creatives.getLength(); i++) {
 //                Element creativeElement = (Element) creatives.item(i);
-//                VastTag.Creative creative = new VastTag.Creative();
+//                VastData.Creative creative = new VastData.Creative();
 //                creative.setId(creativeElement.getAttribute("id"));
 //
 //                // Parse companion banners
 //                NodeList companionBanners = creativeElement.getElementsByTagName("Companion");
-//                List<VastTag.Creative.CompanionBanner> companionBannerList = new ArrayList<>();
+//                List<VastData.Creative.CompanionBanner> companionBannerList = new ArrayList<>();
 //                for (int j = 0; j < companionBanners.getLength(); j++) {
 //                    Element bannerElement = (Element) companionBanners.item(j);
-//                    VastTag.Creative.CompanionBanner companionBanner = new VastTag.Creative.CompanionBanner();
+//                    VastData.Creative.CompanionBanner companionBanner = new VastData.Creative.CompanionBanner();
 //                    companionBanner.setId(bannerElement.getAttribute("id"));
 //                    companionBanner.setWidth(Integer.parseInt(bannerElement.getAttribute("width")));
 //                    companionBanner.setHeight(Integer.parseInt(bannerElement.getAttribute("height")));
@@ -274,15 +274,15 @@ public class VastTagService {
 //        }
 //    }
 //
-//    public VastTag saveVastTag(VastTag vastTag) {
+//    public VastData saveVastTag(VastData vastTag) {
 //        return vastTagRepository.save(vastTag);
 //    }
 //
-//    public VastTag findById(Long id) {
+//    public VastData findById(Long id) {
 //        return vastTagRepository.findById(id).orElse(null);
 //    }
 //
-//    public String convertToJson(VastTag vastTag) {
+//    public String convertToJson(VastData vastTag) {
 //        try {
 //            ObjectMapper objectMapper = new ObjectMapper();
 //            return objectMapper.writeValueAsString(vastTag);
@@ -292,12 +292,12 @@ public class VastTagService {
 //        }
 //    }
 //
-//    public VastTag saveParsedVastTag(String xmlContent) {
-//        VastTag vastTag = parseVastXml(xmlContent);
+//    public VastData saveParsedVastTag(String xmlContent) {
+//        VastData vastTag = parseVastXml(xmlContent);
 //        return saveVastTag(vastTag);
 //    }
 //
-//    public VastTag getVastTagById(Long id) {
+//    public VastData getVastTagById(Long id) {
 //        return findById(id);
 //    }
 //}

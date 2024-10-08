@@ -8,7 +8,7 @@
 
 package com.avshek.vast_parser.controller;
 
-import com.avshek.vast_parser.model.VastTag;
+import com.avshek.vast_parser.model.VastData;
 import com.avshek.vast_parser.service.VastTagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,9 +29,9 @@ public class VastTagController {
         if (xmlContent == null) {
             return ResponseEntity.badRequest().body("Error reading XML file.");
         }
-        VastTag vastTag = vastTagService.parseVastXml(xmlContent);
-        vastTagService.saveVastTag(vastTag);
-        String jsonResponse = vastTagService.convertToJson(vastTag);
+        VastData vastData = vastTagService.parseVastXml(xmlContent);
+        vastTagService.saveVastTag(vastData);
+        String jsonResponse = vastTagService.convertToJson(vastData);
         return ResponseEntity.ok(jsonResponse);
     }
 
@@ -41,16 +41,16 @@ public class VastTagController {
         if (xmlContent == null) {
             return ResponseEntity.badRequest().body("Error reading XML from URL.");
         }
-        VastTag vastTag = vastTagService.parseVastXml(xmlContent);
-        vastTagService.saveVastTag(vastTag);
-        String jsonResponse = vastTagService.convertToJson(vastTag);
+        VastData vastData = vastTagService.parseVastXml(xmlContent);
+        vastTagService.saveVastTag(vastData);
+        String jsonResponse = vastTagService.convertToJson(vastData);
         return ResponseEntity.ok(jsonResponse);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<VastTag> getVastTagById(@PathVariable Long id) {
-        VastTag vastTag = vastTagService.findById(id);
-        return vastTag != null ? ResponseEntity.ok(vastTag) : ResponseEntity.notFound().build();
+    public ResponseEntity<VastData> getVastTagById(@PathVariable Long id) {
+        VastData vastData = vastTagService.findById(id);
+        return vastData != null ? ResponseEntity.ok(vastData) : ResponseEntity.notFound().build();
     }
 }
 
